@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediDiagnose AI — Intelligent Symptom Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="bg-gradient"></div>
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-content">
+            <div class="spinner-container">
+                <div class="spinner"></div>
+                <div class="spinner-inner"></div>
+            </div>
+            <h2 class="loading-title">MediDiagnose AI</h2>
+            <p class="loading-subtitle">Analyzing Your Symptoms</p>
+            <p id="loadingQuote" class="loading-quote">Initializing neural networks...</p>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container fade-in">
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">⚕️</div>
+                <h1>MediDiagnose <span>AI</span></h1>
+            </div>
+            <p class="tagline">Advanced Symptom Analysis & Disease Prediction</p>
+        </header>
+
+        <main class="input-section">
+            <div class="intro-card">
+                <p class="intro-text">Select the symptoms you are experiencing to receive an AI-powered disease prediction.</p>
+            </div>
+
+            {% if error %}
+            <div class="error-banner fade-in">
+                <span class="error-icon">⚠️</span>
+                <span>{{ error }}</span>
+            </div>
+            {% endif %}
+
+            <form id="symptomForm" action="/predict" method="POST">
+                <input type="hidden" name="input_method" id="inputMethod" value="checkbox">
+
+                <div class="tabs">
+                    <button type="button" class="tab-btn active" onclick="switchTab('checkbox')">
+                        <span>☑️</span> Quick Select
+                    </button>
+                    <button type="button" class="tab-btn" onclick="switchTab('chat')">
+                        <span>💬</span> Describe in Words
+                    </button>
+                </div>
+
+                <div id="checkboxPanel" class="tab-panel active">
+                    <div class="search-box">
+                        <input type="text" id="symptomSearch" placeholder="🔍 Search symptoms..." onkeyup="filterSymptoms()">
+                    </div>
+                    <div class="symptoms-grid" id="symptomsGrid">
+                        {% for symptom in symptoms %}
+                        <label class="symptom-chip">
+                            <input type="checkbox" name="symptoms" value="{{ symptom }}">
+                            <span class="chip-text">{{ symptom }}</span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="selection-counter">
+                        <span id="selectedCount">0</span> symptoms selected
+                    </div>
+                </div>
+
+                <div id="chatPanel" class="tab-panel">
+                    <div class="chat-container">
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message bot">
+                                <div class="message-avatar">🤖</div>
+                                <div class="message-bubble">
+                                    Hello! I'm MediDiagnose AI. Please describe all the symptoms you are experiencing in your own words.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-input-area">
+                            <textarea name="chat_text" id="chatText" rows="4" 
+                                placeholder="Example: I have fever, headache, and cough for 3 days..."></textarea>
+                            <button type="button" class="send-btn" onclick="addUserMessage()">Send</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="submit-area">
+                    <button type="submit" class="diagnose-btn" onclick="return showLoading()">
+                        <span class="btn-icon">🔍</span>
+                        <span class="btn-text">Analyze My Symptoms</span>
+                    </button>
+                </div>
+            </form>
+        </main>
+
+        <footer class="footer">
+            <p>MediDiagnose AI © 2024 — Powered by Machine Learning</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
