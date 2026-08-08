@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results — MediDiagnose AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="bg-gradient"></div>
+    </div>
+
+    <div class="main-container fade-in">
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">⚕️</div>
+                <h1>MediDiagnose <span>AI</span></h1>
+            </div>
+            <p class="tagline">Your AI-Powered Health Assessment</p>
+        </header>
+
+        <section class="symptoms-summary">
+            <h3>📝 Symptoms You Reported</h3>
+            <div class="symptom-tags">
+                {% for sym in selected_symptoms %}
+                <span class="symptom-tag">{{ sym }}</span>
+                {% endfor %}
+            </div>
+        </section>
+
+        <main class="results-section">
+            <h2 class="results-title">🔬 Diagnostic Possibilities</h2>
+            <p class="results-subtitle">Here are the top conditions that match your symptoms</p>
+
+            <div class="results-list">
+                {% for result in results %}
+                <div class="result-card rank-{{ result.rank }} fade-in" style="animation-delay: {{ result.rank * 0.15 }}s">
+                    <div class="rank-badge">{{ result.rank }}</div>
+                    <div class="result-content">
+                        <h3 class="result-headline">{{ result.title }}</h3>
+                        <div class="result-body">
+                            {% for line in result.lines %}
+                            <p>{{ line }}</p>
+                            {% endfor %}
+                        </div>
+                        <a href="{{ result.search_url }}" target="_blank" class="learn-more">
+                            Learn more about {{ result.disease }} ↗
+                        </a>
+                    </div>
+                    <div class="result-glow"></div>
+                </div>
+                {% endfor %}
+            </div>
+        </main>
+
+        <div class="disclaimer-banner fade-in">
+            <div class="disclaimer-icon">🏥</div>
+            <div class="disclaimer-text">
+                <strong>Medical Disclaimer</strong>
+                <p>Please note that MediDiagnose AI provides predictions based on the selected symptoms and should not be considered a substitute for professional medical advice or diagnosis.</p>
+            </div>
+        </div>
+
+        <div class="action-buttons fade-in">
+            <a href="/" class="btn-secondary">← Check New Symptoms</a>
+            <a href="https://www.google.com/search?q=find+doctor+near+me" target="_blank" class="btn-primary">Find a Doctor Near Me</a>
+        </div>
+
+        <footer class="footer">
+            <p>MediDiagnose AI © 2024 — Your health is our priority</p>
+        </footer>
+    </div>
+</body>
+</html>
