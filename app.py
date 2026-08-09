@@ -466,7 +466,7 @@ def get_disease_info(disease_name):
         return DISEASE_INFO[disease_name]
     clean = disease_name.replace('_', ' ').title()
     return {
-        "title": f"Based on your symptoms, you may have {clean}.",
+        "title": f"{clean}.",
         "lines": [
             f"{clean} is a medical condition that requires professional evaluation and diagnostic testing.",
             "Please consult a licensed healthcare provider for an accurate diagnosis and personalized treatment plan."
