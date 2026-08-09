@@ -633,7 +633,7 @@ else:
         card_html = f"""
         <div class="result-card rank-{rank}">
             <div class="rank-badge badge-{rank}">{rank}</div>
-            <div class="result-headline">{result['title']}</div>
+            <div class="result-headline">{result['disease']}</div>
             <div class="result-body">
                 <p>{result['lines'][0]}</p>
                 <p>{result['lines'][1]}</p>
