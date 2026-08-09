@@ -646,7 +646,6 @@ else:
     # Disclaimer
     st.markdown("""
     <div class="disclaimer">
-        <div class="disclaimer-icon">🏥</div>
         <div class="disclaimer-text">
             <strong>Medical Disclaimer</strong>
             <p>Please note that MediDiagnose AI provides predictions based on the selected symptoms and should not be considered a substitute for professional medical advice or diagnosis. Always consult a qualified healthcare provider for accurate diagnosis and treatment.</p>
