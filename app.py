@@ -387,6 +387,108 @@ st.markdown("""
     ::-webkit-scrollbar-thumb:hover {
         background: rgba(255,255,255,0.25);
     }
+/* ==================== PAGE ENTRY ANIMATION ==================== */
+
+@keyframes medPageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes medFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Main page sections */
+.med-header {
+    animation: medPageEnter 0.8s ease-out both;
+}
+
+.intro-card {
+    animation: medPageEnter 0.8s ease-out 0.12s both;
+}
+
+.stTabs {
+    animation: medPageEnter 0.8s ease-out 0.22s both;
+}
+
+.symptoms-summary {
+    animation: medPageEnter 0.8s ease-out 0.12s both;
+}
+
+.results-title {
+    animation: medPageEnter 0.8s ease-out 0.18s both;
+}
+
+.results-subtitle {
+    animation: medFadeIn 0.8s ease-out 0.28s both;
+}
+
+/* Disease result cards appear one after another */
+.result-card {
+    animation: medPageEnter 0.7s ease-out both;
+}
+
+.result-card:nth-of-type(1) {
+    animation-delay: 0.30s;
+}
+
+.result-card:nth-of-type(2) {
+    animation-delay: 0.42s;
+}
+
+.result-card:nth-of-type(3) {
+    animation-delay: 0.54s;
+}
+
+.result-card:nth-of-type(4) {
+    animation-delay: 0.66s;
+}
+
+.result-card:nth-of-type(5) {
+    animation-delay: 0.78s;
+}
+
+/* Buttons and bottom sections */
+.action-row {
+    animation: medPageEnter 0.8s ease-out 0.85s both;
+}
+
+.disclaimer {
+    animation: medPageEnter 0.8s ease-out 0.92s both;
+}
+
+.med-footer {
+    animation: medFadeIn 1s ease-out 1s both;
+}
+
+/* Smooth appearance for text and controls */
+.stButton,
+.stTextInput,
+.stTextArea,
+.stMultiSelect {
+    animation: medFadeIn 0.7s ease-out 0.25s both;
+}
+
+/* Respect users who disable motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
 </style>
 """, unsafe_allow_html=True)
 
