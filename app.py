@@ -776,6 +776,7 @@ else:
 st.markdown("""
 <div class="med-footer">
     <p>MediDiagnose AI © 2024 — Powered by Machine Learning</p>
+    <p>Developed by Muhammad Sufian</p>
     <p style="font-size:0.75rem; margin-top:4px;">This tool is for educational purposes only. Not a substitute for professional medical advice.</p>
 </div>
 """, unsafe_allow_html=True)
